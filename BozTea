@@ -1,0 +1,29 @@
+from github import Github
+
+def fibonacci(n):
+    fib_sequence = [0, 1]
+    for i in range(2, n):
+        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
+    return fib_sequence
+
+def upload_to_github(username, password, repository_name, file_name, content):
+    g = Github(Onur1982, 19828815)
+    user = g.get_user()
+    repo = user.create_repo(repository_name)
+    repo.create_file(file_name, "Initial commit", content)
+
+if __name__ == "__main__":
+    # Set your GitHub credentials
+    github_username = "your_username"
+    github_password = "your_password"
+
+    # Generate Fibonacci sequence
+    fib_sequence = fibonacci(10)
+
+    # Prepare file content
+    file_content = ""
+    for num in fib_sequence:
+        file_content += str(num) + "\n"
+
+    # Upload file to GitHub
+    upload_to_github(github_username, github_password, "fibonacci-sequence", "fibonacci.txt", file_content)
